@@ -38,9 +38,3 @@ var options = {
 saml20.validate(samlAssertion, options, function(err, claims) {
 	// if validation is successful claims will be an array that contains.
 });
-
-```
-
-## Examples
-
-Examples include a SAML2.0 token that is expired, but you use it to test signature and the rest of the features.
