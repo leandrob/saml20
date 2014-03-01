@@ -1,6 +1,6 @@
 {
   "name": "saml20",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "SAML 2.0 and 1.0 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
@@ -17,6 +17,9 @@
     "SAML 1.1",
     "Token Parser"
   ],
+  "scripts": {
+    "test": "mocha -R spec test"
+  },
   "author": "Leandro Boffi (lboffi@gmail.com)",
   "license": "MIT",
   "readmeFilename": "README.md"
