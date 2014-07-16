@@ -4,9 +4,9 @@
   "description": "SAML 2.0 and 1.0 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
-    "xml2js": "0.1.x",
     "xml-crypto": "https://github.com/leandrob/xml-crypto/tarball/master",
-    "xmldom": "0.1.x"
+    "xmldom": "0.1.x",
+    "xml2js": "~0.4.4"
   },
   "repository": {
     "type": "git",
