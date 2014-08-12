@@ -24,7 +24,7 @@ saml.parse(rawAssertion, function(err, profile) {
 	// err
 
 	var claims = profile.claims; // Array of user attributes;
-	var issuer = profile.issuer: // String Issuer name.
+	var issuer = profile.issuer; // String Issuer name.
 });
 
 ```
@@ -55,7 +55,7 @@ saml.validate(rawAssertion, options, function(err, profile) {
 	// err
 
 	var claims = profile.claims; // Array of user attributes;
-	var issuer = profile.issuer: // String Issuer name.
+	var issuer = profile.issuer; // String Issuer name.
 });
 
 ```
