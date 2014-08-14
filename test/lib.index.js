@@ -6,14 +6,14 @@ var fs      = require("fs");
 var validToken = fs.readFileSync('./test/assets/validToken.xml').toString();
 var invalidToken = fs.readFileSync('./test/assets/invalidToken.xml').toString();
 
-var issuerName = 'https://your-issuer.com';
+var issuerName = 'https://identity.kidozen.com/';
 var thumbprint = '1aeabdfa4473ecc7efc5947b19436c575574baf8';
-var certificate = 'MIICDzCCAXygAwIBAgIQVWXAvbbQyI5BcFe0ssmeKTAJBgU...';
-var audience = 'http://your-service.com/';
+var certificate = 'MIICDzCCAXygAwIBAgIQVWXAvbbQyI5BcFe0ssmeKTAJBgUrDgMCHQUAMB8xHTAbBgNVBAMTFGlkZW50aXR5LmtpZG96ZW4uY29tMB4XDTEyMDcwNTE4NTEzNFoXDTM5MTIzMTIzNTk1OVowHzEdMBsGA1UEAxMUaWRlbnRpdHkua2lkb3plbi5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJ1GPvzmIZ5OO5by9Qn2fsSuLIJWHfewRzgxcZ6SykzmjD4H1aGOtjUg5EFgQ/HWxa16oJ+afWa0dyeXAiLl5gas71FzgzeODL1STIuyLXFVLQvIJX/HTQU+qcMBlwsscdvVaJSYQsI3OC8Ny5GZvt1Jj2G9TzMTg2hLk5OfO1zxAgMBAAGjVDBSMFAGA1UdAQRJMEeAEDSvlNc0zNIzPd7NykB3GAWhITAfMR0wGwYDVQQDExRpZGVudGl0eS5raWRvemVuLmNvbYIQVWXAvbbQyI5BcFe0ssmeKTAJBgUrDgMCHQUAA4GBAIMmDNzL+Kl5omgxKRTgNWMSZAaMLgAo2GVnZyQ26mc3v+sNHRUJYJzdYOpU6l/P2d9YnijDz7VKfOQzsPu5lHK5s0NiKPaSb07wJBWCNe3iwuUNZg2xg/szhiNSWdq93vKJG1mmeiJSuMlMafJVqxC6K5atypwNNBKbpJEj4w5+';
+var audience = 'http://demoscope.com';
 
 describe('SAML 2.0', function() {
 	it("Should validate saml 2.0 token using thumbprint", function (done) {
-		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: false }, function(err, profile) {
+		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
 			assert.equal(issuerName, profile.issuer);
 			assert.ok(profile.claims);
@@ -22,7 +22,7 @@ describe('SAML 2.0', function() {
 	});
 
 	it("Should validate saml 2.0 token using certificate", function (done) {
-		saml.validate(validToken, { publicKey: certificate, bypassExpiration: false }, function(err, profile) {
+		saml.validate(validToken, { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
 			assert.equal(issuerName, profile.issuer);
 			assert.ok(profile.claims);
@@ -31,7 +31,7 @@ describe('SAML 2.0', function() {
 	});	
 
 	it("Should validate saml 2.0 token and check audience", function (done) {
-		saml.validate(validToken, { publicKey: certificate, audience: audience, bypassExpiration: false }, function(err, profile) {
+		saml.validate(validToken, { publicKey: certificate, audience: audience, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
 			assert.equal(issuerName, profile.issuer);
 			assert.ok(profile.claims);
@@ -40,7 +40,7 @@ describe('SAML 2.0', function() {
 	});	
 
 	it("Should fail with invalid audience", function (done) {
-		saml.validate(validToken, { publicKey: certificate, audience: 'http://any-other-audience.com/', bypassExpiration: false }, function(err, profile) {
+		saml.validate(validToken, { publicKey: certificate, audience: 'http://any-other-audience.com/', bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
 			assert.equal('Invalid audience.', err.message);
@@ -49,7 +49,7 @@ describe('SAML 2.0', function() {
 	});	
 
 	it("Should fail with invalid signature", function (done) {
-		saml.validate(invalidToken, { publicKey: certificate, bypassExpiration: false }, function(err, profile) {
+		saml.validate(invalidToken, { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
 			assert.equal('Invalid assertion signature.', err.message);
@@ -58,10 +58,19 @@ describe('SAML 2.0', function() {
 	});	
 
 	it("Should fail with invalid assertion", function (done) {
-		saml.validate('invalid-assertion', { publicKey: certificate, bypassExpiration: false }, function(err, profile) {
+		saml.validate('invalid-assertion', { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
 			assert.equal('Invalid assertion.', err.message);
+			done();
+		})
+	});	
+
+	it("Should fail with expired assertion", function (done) {
+		saml.validate(validToken, { publicKey: certificate }, function(err, profile) {
+			assert.ok(!profile);
+			assert.ok(err);
+			assert.equal('Assertion is expired.', err.message);
 			done();
 		})
 	});	
