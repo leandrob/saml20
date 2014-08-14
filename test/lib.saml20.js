@@ -16,9 +16,10 @@ describe('lib.saml20', function() {
 	it("Should validate saml 2.0 token using thumbprint", function (done) {
 		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
-			assert.equal(issuerName, profile.issuer);
 			assert.ok(profile.claims);
-			assert.equal('demo@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
+			
+			assert.strictEqual(issuerName, profile.issuer);
+			assert.strictEqual('demo@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
 			done();
 		})
 	});
@@ -26,9 +27,9 @@ describe('lib.saml20', function() {
 	it("Should validate saml 2.0 token using certificate", function (done) {
 		saml.validate(validToken, { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
-			assert.equal(issuerName, profile.issuer);
+			assert.strictEqual(issuerName, profile.issuer);
 			assert.ok(profile.claims);
-			assert.equal('demo@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
+			assert.strictEqual('demo@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
 
 			done();
 		})
@@ -37,7 +38,7 @@ describe('lib.saml20', function() {
 	it("Should validate saml 2.0 token and check audience", function (done) {
 		saml.validate(validToken, { publicKey: certificate, audience: audience, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
-			assert.equal(issuerName, profile.issuer);
+			assert.strictEqual(issuerName, profile.issuer);
 			assert.ok(profile.claims);
 			done();
 		})
@@ -47,7 +48,7 @@ describe('lib.saml20', function() {
 		saml.validate(validToken, { publicKey: certificate, audience: 'http://any-other-audience.com/', bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
-			assert.equal('Invalid audience.', err.message);
+			assert.strictEqual('Invalid audience.', err.message);
 			done();
 		})
 	});	
@@ -56,7 +57,7 @@ describe('lib.saml20', function() {
 		saml.validate(invalidToken, { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
-			assert.equal('Invalid assertion signature.', err.message);
+			assert.strictEqual('Invalid assertion signature.', err.message);
 			done();
 		})
 	});	
@@ -65,7 +66,7 @@ describe('lib.saml20', function() {
 		saml.validate('invalid-assertion', { publicKey: certificate, bypassExpiration: true }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
-			assert.equal('Invalid assertion.', err.message);
+			assert.strictEqual('Invalid assertion.', err.message);
 			done();
 		})
 	});	
@@ -74,7 +75,7 @@ describe('lib.saml20', function() {
 		saml.validate(validToken, { publicKey: certificate }, function(err, profile) {
 			assert.ok(!profile);
 			assert.ok(err);
-			assert.equal('Assertion is expired.', err.message);
+			assert.strictEqual('Assertion is expired.', err.message);
 			done();
 		})
 	});	
@@ -82,7 +83,7 @@ describe('lib.saml20', function() {
 	it("Should parse saml 2.0 without signature validation", function (done) {
 		saml.parse(invalidToken, function(err, profile) {
 			assert.ifError(err);
-			assert.equal(issuerName, profile.issuer);
+			assert.strictEqual(issuerName, profile.issuer);
 			assert.ok(profile.claims);
 			done();
 		})
