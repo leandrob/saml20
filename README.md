@@ -109,10 +109,6 @@ To run the tests use:
 $ npm test
 ```
 
-## Pendings
-
-SAML 1.1 tests are missing yet.
-
 ## License
 
 MIT
