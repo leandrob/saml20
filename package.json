@@ -4,7 +4,7 @@
   "description": "SAML 2.0 and 1.0 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
-    "xml-crypto": "https://github.com/leandrob/xml-crypto/tarball/master",
+    "xml-crypto": "0.0.10",
     "xmldom": "0.1.19",
     "xml2js": "0.4.4",
     "thumbprint": "0.0.1"
@@ -21,7 +21,7 @@
   "scripts": {
     "test": "mocha -R spec test"
   },
-  "author": "Leandro Boffi (lboffi@gmail.com)",
+  "author": "Leandro Boffi (me@leandrob.com)",
   "license": "MIT",
   "readmeFilename": "README.md"
 }
