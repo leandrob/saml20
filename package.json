@@ -1,10 +1,10 @@
 {
   "name": "saml20",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "SAML 2.0 and 1.1 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
-    "xml-crypto": "0.0.10",
+    "xml-crypto": "https://github.com/auth0/xml-crypto/tarball/master",
     "xmldom": "0.1.19",
     "xml2js": "0.4.4",
     "thumbprint": "0.0.1"
