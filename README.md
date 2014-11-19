@@ -48,7 +48,7 @@ var saml = require('saml20');
 
 var options = {
 	thumbprint: '1aeabdfa4473ecc7efc5947b18436c575574baf8',
-	audince: 'http://myservice.com/'
+	audience: 'http://myservice.com/'
 }
 
 saml.validate(rawAssertion, options, function(err, profile) {
@@ -68,7 +68,7 @@ var saml = require('saml20');
 
 var options = {
 	publicKey: 'MIICDzCCAXygAwIBAgIQVWXAvbbQyI5Bc...',
-	audince: 'http://myservice.com/'
+	audience: 'http://myservice.com/'
 }
 
 saml.validate(rawAssertion, options, function(err, profile) {
@@ -112,7 +112,3 @@ $ npm test
 ## License
 
 MIT
-
-
-
-
