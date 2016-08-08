@@ -4,10 +4,11 @@
   "description": "SAML 2.0 and 1.1 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
-    "xml-crypto": "https://github.com/auth0/xml-crypto/tarball/master",
-    "xmldom": "0.1.19",
+    "lodash": "3.10.1",
+    "thumbprint": "0.0.1",
+    "xml-crypto": "0.8.1",
     "xml2js": "0.4.4",
-    "thumbprint": "0.0.1"
+    "xmldom": "0.1.19"
   },
   "repository": {
     "type": "git",
@@ -19,9 +20,14 @@
     "Token Parser"
   ],
   "scripts": {
-    "test": "mocha -R spec test"
+    "test": "npm run jshint && mocha -R spec test",
+    "jshint": "jshint lib/*.js"
   },
   "author": "Leandro Boffi (me@leandrob.com)",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "jshint": "2.8.0",
+    "mocha": "2.3.3"
+  }
 }
