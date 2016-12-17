@@ -39,6 +39,7 @@ saml.parse(rawAssertion, function(err, profile) {
 * `publicKey` is the trusted public key.
 * `audience` (optional). If it is included audience validation will take place.
 * `bypassExpiration` (optional). This flag indicates expiration validation bypass (useful for testing, not recommended in production environments);
+* `idAttribute` (optional). This identifier indicate the attribute name that would be used to find the validated root (default is `AttributeId`, while `ID` and `Id` would be used in any case to find the element, so you can omit that option in that cases);
 
 You can use either `thumbprint` or `publicKey` but you should use at least one.
 
