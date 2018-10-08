@@ -18,7 +18,7 @@ Parses the `rawAssertion` without validating signature, expiration and audience.
 
 ```javascript
 
-var saml = require('saml20');
+var saml = require('saml20-maintained');
 
 saml.parse(rawAssertion, function(err, profile) {
 	// err
@@ -44,7 +44,7 @@ You can use either `thumbprint` or `publicKey` but you should use at least one.
 
 ```javascript
 
-var saml = require('saml20');
+var saml = require('saml20-maintained');
 
 var options = {
 	thumbprint: '1aeabdfa4473ecc7efc5947b18436c575574baf8',
@@ -64,7 +64,7 @@ or using publicKey:
 
 ```javascript
 
-var saml = require('saml20');
+var saml = require('saml20-maintained');
 
 var options = {
 	publicKey: 'MIICDzCCAXygAwIBAgIQVWXAvbbQyI5Bc...',
