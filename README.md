@@ -1,6 +1,6 @@
 SAML 2.0 & 1.1 Assertion Parser & Validator
 =============
-saml20 is a simple module that allows you to parse and validate SAML 2.0 and 1.1 tokens. It has been tested with [Microsoft ADFS](http://en.wikipedia.org/wiki/Active_Directory_Federation_Services), OKTA, and PingOne tokens.
+saml20-maintained is a fork of saml20. Is it the same library with updated versions of vulnerable dependencies. 
 
 ## Installation
 
