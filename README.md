@@ -5,7 +5,7 @@ saml20-maintained is a fork of saml20. Is it the same library with updated versi
 ## Installation
 
 ```bash
-$ npm install saml20
+$ npm install saml20-maintained
 ```
 
 ## Usage

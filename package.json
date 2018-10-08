@@ -1,5 +1,5 @@
 {
-  "name": "saml20",
+  "name": "saml20-maintained",
   "version": "0.1.15",
   "description": "SAML 2.0 and 1.1 token parser for Node.js",
   "main": "./lib/index.js",
