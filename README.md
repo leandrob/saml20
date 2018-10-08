@@ -1,6 +1,6 @@
 SAML 2.0 & 1.1 Assertion Parser & Validator
 =============
-saml20-maintained is a fork of saml20. Is it the same library with updated versions of vulnerable dependencies. 
+saml20-maintained is a fork of saml20. It is the same library with updated versions of vulnerable dependencies. 
 
 ## Installation
 
