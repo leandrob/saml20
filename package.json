@@ -24,7 +24,7 @@
     "jshint": "jshint lib/*.js"
   },
   "author": "Leandro Boffi (me@leandrob.com)",
-  "contributors":[
+  "contributors": [
     {
       "name": "Phillip Son",
       "email": "philson3@gmail.com"
@@ -33,7 +33,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "jshint": "2.8.0",
-    "mocha": "2.3.3"
+    "jshint": "2.10.2",
+    "mocha": "6.1.4"
   }
 }
