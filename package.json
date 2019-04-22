@@ -1,6 +1,6 @@
 {
   "name": "saml20-maintained",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "SAML 2.0 and 1.1 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
