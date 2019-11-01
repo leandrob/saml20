@@ -13,13 +13,11 @@ var audience = 'http://demoscope.com';
 
 describe('lib.saml20', function() {
 
-	it("Should validate saml 2.0 token using thumbprint", function (done) {
+	it("Should fail with thumbprint as its disabled for this module in saml 2.0", function (done) {
 		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
-			assert.ifError(err);
-			assert.ok(profile.claims);
-			
-			assert.strictEqual(issuerName, profile.issuer);
-			assert.strictEqual('demo@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
+			assert.ok(!profile);
+			assert.ok(err);
+			assert.equal('Validating by thumbprint is currently disabled', err.message);
 			done();
 		})
 	});

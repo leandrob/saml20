@@ -13,12 +13,11 @@ var audience = 'http://auth.kidozen.com/';
 
 describe('lib.saml11', function() {
 
-	it("Should validate saml 1.1 token using thumbprint", function (done) {
+	it("Should fail with thumbprint as its disabled for this module in saml 1.1", function (done) {
 		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
-			assert.ifError(err);
-			assert.equal(issuerName, profile.issuer);
-			assert.ok(profile.claims);
-			assert.equal('lean@kidozen.com',profile.claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
+			assert.ok(!profile);
+			assert.ok(err);
+			assert.equal('Validating by thumbprint is currently disabled', err.message);
 			done();
 		})
 	});
