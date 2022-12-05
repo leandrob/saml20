@@ -1,6 +1,6 @@
 var assert  = require("assert");
-var saml    = require("../lib/index.js");
 var fs      = require("fs");
+var saml    = require("../lib/index.js");
 
 // Tests Configuration
 var validToken = fs.readFileSync('./test/assets/saml20.validToken.xml').toString();
@@ -14,7 +14,7 @@ var audience = 'http://demoscope.com';
 describe('lib.saml20', function() {
 
 	it("Should validate saml 2.0 token using thumbprint", function (done) {
-		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
+		saml.validate(validToken, {publicKey: certificate, thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
 			assert.ok(profile.claims);
 			

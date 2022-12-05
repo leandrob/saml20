@@ -1,18 +1,18 @@
 {
-  "name": "saml20",
-  "version": "0.1.14",
+  "name": "saml20-maintained",
+  "version": "0.1.4",
   "description": "SAML 2.0 and 1.1 token parser for Node.js",
   "main": "./lib/index.js",
   "dependencies": {
-    "lodash": "3.10.1",
-    "thumbprint": "0.0.1",
-    "xml-crypto": "0.8.1",
-    "xml2js": "0.4.4",
-    "xmldom": "0.1.19"
+    "lodash": "^4.17.21",
+    "thumbprint": "^0.0.1",
+    "xml-crypto": "^2.1.3",
+    "xml2js": "^0.4.23",
+    "@xmldom/xmldom": "^0.8.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leandrob/saml20.git"
+    "url": "https://github.com/phylp/saml20-maintained.git"
   },
   "keywords": [
     "SAML 2.0",
@@ -21,13 +21,19 @@
   ],
   "scripts": {
     "test": "npm run jshint && mocha -R spec test",
-    "jshint": "jshint lib/*.js"
+    "jshint": "jshint lib"
   },
   "author": "Leandro Boffi (me@leandrob.com)",
+  "contributors": [
+    {
+      "name": "Phillip Son",
+      "email": "philson3@gmail.com"
+    }
+  ],
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "jshint": "2.8.0",
-    "mocha": "2.3.3"
+    "jshint": "2.13.3",
+    "mocha": "8.2.1"
   }
 }

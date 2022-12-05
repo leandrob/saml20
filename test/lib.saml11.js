@@ -14,7 +14,7 @@ var audience = 'http://auth.kidozen.com/';
 describe('lib.saml11', function() {
 
 	it("Should validate saml 1.1 token using thumbprint", function (done) {
-		saml.validate(validToken, { thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
+		saml.validate(validToken, {publicKey: certificate, thumbprint: thumbprint, bypassExpiration: true }, function(err, profile) {
 			assert.ifError(err);
 			assert.equal(issuerName, profile.issuer);
 			assert.ok(profile.claims);
